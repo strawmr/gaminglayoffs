@@ -1,0 +1,122 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: rgb(26, 9, 51);
+  }
+  
+  .v-main {
+      background: rgb(26, 9, 51);
+  }
+  
+  .v-application {
+    background: rgb(26, 9, 51) !important;
+    color: white;
+  }
+
+  h2 {
+      font-size: clamp(20px, 2.5vw, 42px);
+      
+  }
+  
+  .cabin {
+    font-family: 'Cabin', sans-serif;
+  
+  }
+  
+  .DaysNum {
+      font-size: clamp(34px, 4.5vw, 64px);
+  
+  }
+  
+  .company-name {
+      font-size: 30px;
+      font-weight: bold;
+  
+    }
+    
+    
+    .company-container a {
+      text-decoration: none;
+    }
+    
+    .uppercase {
+      text-transform: uppercase;
+    }
+  
+    .footer-tag a {
+      /* text-decoration: none; */
+      color: white;
+    }
+  
+  /** LOADING **/
+  
+ 
+.loading {
+    display: -webkit-inline-box;
+    flex-direction: row;
+    text-align: center;
+  }
+  .loading__letter {
+    font-size: 88px;
+    font-weight: normal;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: "Audiowide";
+    color: white;
+    animation-name: bounce;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+  
+  .loading__letter:nth-child(2) {
+    animation-delay: .1s;	
+  }
+  .loading__letter:nth-child(3) {
+    animation-delay: .2s;
+  }
+  .loading__letter:nth-child(4) {
+    animation-delay: .3s;	
+  }
+  .loading__letter:nth-child(5) {
+    animation-delay: .4s;
+  }
+  .loading__letter:nth-child(6) {
+    animation-delay: .5s;	
+  }
+  .loading__letter:nth-child(7) {
+    animation-delay: .6s;
+  }
+  .loading__letter:nth-child(8) {
+    animation-delay: .8s;
+  }
+  .loading__letter:nth-child(9) {
+    animation-delay: 1s;
+  }
+  .loading__letter:nth-child(10) {
+    animation-delay: 1.2s;
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0px)
+    }
+    40% {
+      transform: translateY(-40px);
+    }
+    80%,
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  
+  @media (max-width: 700px) {
+    .loading__letter {
+      font-size: 50px;
+    }
+  }
+  
+  @media (max-width: 340px) {
+    .loading__letter {
+      font-size: 40px;
+    }
+  }
