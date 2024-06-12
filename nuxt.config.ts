@@ -27,8 +27,12 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
+    'nuxt-gtag',
     //...
   ],
+  gtag: {
+    id: 'G-2NC0DNT9Q5'
+  },
   vite: {
     vue: {
       template: {
