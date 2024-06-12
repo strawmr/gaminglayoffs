@@ -31,7 +31,10 @@ export default defineNuxtConfig({
     //...
   ],
   gtag: {
-    id: 'G-2NC0DNT9Q5'
+    id: 'G-2NC0DNT9Q5',
+    config: {
+      page_title: 'Video Game Layoffs Analytics Test'
+    },
   },
   vite: {
     vue: {
