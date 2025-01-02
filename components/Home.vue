@@ -65,9 +65,18 @@
 
         <v-col cols="12">
           <div>
-            <h2 class="uppercase text-center" style="color: rgb(253, 151, 190)">Total Estimated Layoffs In 2024:</h2>
+            <h2 class="uppercase text-center" style="color: rgb(253, 151, 190)">Total Estimated Layoffs In 2025:</h2>
             <div v-if="state.company" class="text-center company-container">
               <span class="company-name cabin">~ {{ formatNumber(state.company.Total_Employees) }}</span>
+            </div>
+          </div>
+        </v-col>
+
+        <v-col cols="12">
+          <div>
+            <h2 class="uppercase text-center" style="color: rgb(253, 151, 190)">Total Known Layoffs In 2024:</h2>
+            <div class="text-center company-container">
+              <span class="company-name cabin">~ 14,853 Known/Over 16,000 Estimated</span>
             </div>
           </div>
         </v-col>
@@ -75,7 +84,7 @@
 
       <v-col cols="12" class="text-center footer-tag">
         <v-btn style="font-weight: 800;" size="large" base-color="#fd97be" href="https://docs.google.com/spreadsheets/d/1sxqxCSPvMdBW0PPJdOYhmRutANitab-jFgmcltraPRQ/edit?usp=sharing" target="_blank">
-          2024 Gaming Layoff Tracker
+          Full Gaming Layoff Tracker
         </v-btn>
       </v-col>
     </v-row>
@@ -138,6 +147,11 @@ const formatNumber = (number: number) => {
 // Computed property to display "Unknown" if Employees data is missing
 const employeesCount = computed(() => {
   return state.company && state.company.Employees ? state.company.Employees : 'Unknown'
+})
+
+// Computed property to display "No Layoffs Yet This Year" if no data is available
+const latestCompany = computed(() => {
+  return state.company && state.company.Company ? state.company.Company : 'There have been no layoffs yet this year'
 })
 
 // Computed property to handle singular/plural day text
