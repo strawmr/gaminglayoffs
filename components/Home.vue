@@ -123,7 +123,8 @@ const state = reactive({
 })
 
 onMounted(() => {
-  const url = 'https://script.google.com/macros/s/AKfycbyV76IxUxpJG3QT2x_cs2-JA8pAKMa8IeoyX6JvN3TzWSHJC35ijU0CXlkX8mpqgtFz/exec'
+  const url = 'https://script.google.com/macros/s/AKfycbz3sJ1v6m_0FUvXNfUwg655UFj1L14EPlkyBrW1NQSJYsfX9hkcnW6VmTUSqYkpkr1y/exec'
+  
   axios
     .get(url)
     .then((response) => {
