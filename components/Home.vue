@@ -101,7 +101,6 @@ function calculateDaysDifference(lastDate: string) {
   const today = new Date()
   const todayUTC = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())
 
-  // Split the date string "YYYY-MM-DD" and convert to numbers
   const dateParts = lastDate.split('-')
   const year = parseInt(dateParts[0], 10)
   const month = parseInt(dateParts[1], 10) - 1 // Month is 0-indexed
@@ -119,7 +118,6 @@ function calculateDaysDifference(lastDate: string) {
 }
 
 const state = reactive({
-  companies: [],
   daysSinceLastLayoff: null as number | null,
   company: null as Record<string, any> | null,
 })
@@ -129,8 +127,8 @@ onMounted(() => {
   axios
     .get(url)
     .then((response) => {
-      if (response.data && response.data.length > 0) {
-        const mostRecentEntry = response.data[0] // Get the first entry as the most recent
+      if (response.data) {
+        const mostRecentEntry = response.data // The response is now a single object
         state.company = mostRecentEntry
         state.daysSinceLastLayoff = calculateDaysDifference(mostRecentEntry.Date) // Assuming 'Date' is the key for the date in the data
       }
