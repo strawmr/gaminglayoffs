@@ -71,15 +71,6 @@
             </div>
           </div>
         </v-col>
-
-        <v-col cols="12">
-          <div>
-            <h2 class="uppercase text-center" style="color: rgb(253, 151, 190)">Total Known Layoffs In 2024:</h2>
-            <div class="text-center company-container">
-              <span class="company-name cabin">~ 14,853 Known/Over 16,000 Estimated</span>
-            </div>
-          </div>
-        </v-col>
       </div>
 
       <v-col cols="12" class="text-center footer-tag">
