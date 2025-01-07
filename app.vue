@@ -18,12 +18,13 @@ useHead({
   },
   script: [ { innerHTML: 'console.log(\'SEO IS CALLED\')' } ]
 })
+
 </script>
 
 
 <template>
     <v-app>
-     <Home />
+     <Home />     
      <Footer />
     </v-app>  
 </template>
