@@ -45,7 +45,7 @@
             <h2 class="uppercase text-center" style="color: rgb(253, 151, 190)">Latest Studio:</h2>
             <div v-if="state.company" class="text-center company-container">
               <span class="company-name cabin">{{ state.company.company }}
-                <p><a :href="state.company.source" target="_blank">(Source)</a></p>
+                <p v-if="state.company.source"><a :href="state.company.source" target="_blank">(Source)</a></p>
               </span>
             </div>
           </div>
