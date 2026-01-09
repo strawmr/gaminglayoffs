@@ -2,7 +2,10 @@
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "types": ["@nuxt/types", "@nuxt/typescript-build", "@nuxtjs/vuetify"],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   }
 }
+
+
