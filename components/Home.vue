@@ -71,7 +71,7 @@
 
         <v-col cols="12">
   <div>
-    <h2 class="uppercase text-center" style="color: rgb(253, 151, 190)">Total Estimated Layoffs In 2025:</h2>
+    <h2 class="uppercase text-center" style="color: rgb(253, 151, 190)">Total Estimated Layoffs In 2026:</h2>
     <div v-if="state.totalEmployees !== null" class="text-center company-container">
       <span class="company-name cabin">~ {{ formatNumber(state.totalEmployees) }}</span>
     </div>
