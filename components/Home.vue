@@ -92,8 +92,10 @@
 
 <script setup lang="ts">
 import { reactive, computed, onMounted } from 'vue'
-import numeral from 'numeral'
 import { useNuxtApp } from '#app'
+import type { SupabaseClient } from '@supabase/supabase-js'
+import * as numeralNamespace from 'numeral'
+const numeral = (numeralNamespace as any).default || numeralNamespace
 
 // Helper function to calculate the difference in days
 function calculateDaysDifference(lastDate: string) {
@@ -114,11 +116,12 @@ const state = reactive({
 
 onMounted(async () => {
   const { $supabase } = useNuxtApp()
+  const supabase = $supabase as SupabaseClient
   const currentYear = new Date().getFullYear()
 
   try {
     // Fetch the most recent layoffs data
-    const { data: recentData, error: recentError } = await $supabase
+    const { data: recentData, error: recentError } = await supabase
       .from('layoffs')
       .select('company, employees, source, date')
       .order('date', { ascending: false })
@@ -136,7 +139,7 @@ onMounted(async () => {
     }
 
     // Fetch all rows and filter for the current year
-    const { data: employeesData, error: employeesError } = await $supabase
+    const { data: employeesData, error: employeesError } = await supabase
       .from('layoffs')
       .select('employees, date')
 
