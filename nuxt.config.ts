@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 
   css: [
     'vuetify/styles',
-    '@mdi/font/css/materialdesignicons.css',
+    '@fortawesome/fontawesome-free/css/all.css',
     '@/assets/main.scss',
   ],
 
