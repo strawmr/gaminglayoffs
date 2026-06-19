@@ -8,15 +8,24 @@
           Back
         </v-btn>
         <h1 class="tracker-title flex-grow-1 text-center">Full Gaming Layoff Tracker</h1>
-        <v-btn
-          variant="outlined"
-          color="#fd97be"
-          prepend-icon="fas fa-download"
-          style="font-weight: 700; font-size: 0.8rem;"
-          @click="exportCSV"
-        >
-          Export CSV
-        </v-btn>
+        <div class="d-flex gap-2">
+          <SubmitLayoffModal>
+            <template #activator="{ props }">
+              <v-btn v-bind="props" variant="outlined" color="#fd97be" prepend-icon="fas fa-plus" style="font-weight: 700; font-size: 0.8rem;">
+                Submit
+              </v-btn>
+            </template>
+          </SubmitLayoffModal>
+          <v-btn
+            variant="outlined"
+            color="#fd97be"
+            prepend-icon="fas fa-download"
+            style="font-weight: 700; font-size: 0.8rem;"
+            @click="exportCSV"
+          >
+            Export CSV
+          </v-btn>
+        </div>
       </v-col>
 
       <!-- Search -->

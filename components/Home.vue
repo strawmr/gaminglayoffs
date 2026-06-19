@@ -75,6 +75,22 @@
           </div>
         </v-col>
 
+        <!-- CTA -->
+        <v-col cols="12" class="text-center mt-4">
+          <div class="cta-row">
+            <v-btn style="font-weight: 800;" size="large" base-color="#fd97be" to="/tracker">
+              Full Gaming Layoff Tracker
+            </v-btn>
+            <SubmitLayoffModal>
+              <template #activator="{ props }">
+                <v-btn v-bind="props" style="font-weight: 800;" size="large" variant="outlined" color="#fd97be">
+                  Submit a Layoff
+                </v-btn>
+              </template>
+            </SubmitLayoffModal>
+          </div>
+        </v-col>
+
         <!-- Monthly bar chart -->
         <v-col cols="12" class="mt-4">
           <div class="chart-card">
@@ -107,11 +123,35 @@
           </div>
         </v-col>
 
-        <!-- CTA -->
-        <v-col cols="12" class="text-center mt-4 footer-tag">
-          <v-btn style="font-weight: 800;" size="large" base-color="#fd97be" to="/tracker">
-            Full Gaming Layoff Tracker
-          </v-btn>
+        <!-- Resources -->
+        <v-col cols="12" class="mt-2">
+          <div class="resources-card">
+            <div class="resources-header">
+              <i class="fas fa-life-ring resources-icon"></i>
+              Affected by a layoff? Here are some resources.
+            </div>
+            <div class="resources-grid">
+              <div class="resources-group">
+                <div class="resources-group-label">Job Boards</div>
+                <a href="https://games-jobs-workbook.replit.app/" target="_blank" rel="noopener noreferrer" class="resources-link">ASGC Jobs Board</a>
+                <a href="https://gamejobs.co" target="_blank" rel="noopener noreferrer" class="resources-link">GameJobs.co</a>
+                <a href="https://hitmarker.net" target="_blank" rel="noopener noreferrer" class="resources-link">Hitmarker</a>
+                <a href="https://workwithindies.com" target="_blank" rel="noopener noreferrer" class="resources-link">Work With Indies</a>
+                <a href="https://www.linkedin.com/jobs/search/?keywords=game%20developer" target="_blank" rel="noopener noreferrer" class="resources-link">LinkedIn Gaming Jobs</a>
+              </div>
+              <div class="resources-group">
+                <div class="resources-group-label">Community</div>
+                <a href="https://www.igda.org" target="_blank" rel="noopener noreferrer" class="resources-link">IGDA</a>
+<a href="https://www.reddit.com/r/gamedev" target="_blank" rel="noopener noreferrer" class="resources-link">r/gamedev</a>
+              </div>
+              <div class="resources-group">
+                <div class="resources-group-label">Support</div>
+                <a href="https://www.nami.org" target="_blank" rel="noopener noreferrer" class="resources-link">NAMI Mental Health</a>
+                <a href="https://www.crisistextline.org" target="_blank" rel="noopener noreferrer" class="resources-link">Crisis Text Line</a>
+                <a href="https://www.benefits.gov" target="_blank" rel="noopener noreferrer" class="resources-link">Benefits.gov</a>
+              </div>
+            </div>
+          </div>
         </v-col>
 
         <!-- Share row -->
@@ -368,7 +408,7 @@ async function copyToClipboard() {
 
 .stat-yoy {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   padding: 3px 8px;
@@ -497,4 +537,70 @@ async function copyToClipboard() {
   color: rgba(255, 255, 255, 0.35);
   margin-right: 4px;
 }
+
+/* ── CTA row ── */
+.cta-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── Resources card ── */
+.resources-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(253, 151, 190, 0.15);
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+
+.resources-header {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resources-icon {
+  color: rgb(253, 151, 190);
+  font-size: 0.85rem;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .resources-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
+.resources-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.resources-group-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgb(253, 151, 190);
+  margin-bottom: 2px;
+}
+
+.resources-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.resources-link:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 </style>
