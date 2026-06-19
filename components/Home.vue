@@ -7,7 +7,7 @@
         <v-img
           class="mb-4"
           height="auto"
-          style="margin: 0 auto; max-width: 700px"
+          style="margin: 0 auto; max-width: 450px"
           src="@/assets/PinkSlip.png"
         />
       </v-col>
@@ -549,10 +549,11 @@ async function copyToClipboard() {
 
 /* ── Resources card ── */
 .resources-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(253, 151, 190, 0.15);
+  background: rgba(253, 151, 190, 0.05);
+  border: 1px solid rgba(253, 151, 190, 0.3);
+  border-top: 3px solid rgb(253, 151, 190);
   border-radius: 10px;
-  padding: 20px 24px;
+  padding: 24px 28px;
 }
 
 .resources-header {
@@ -598,7 +599,7 @@ async function copyToClipboard() {
 .resources-link {
   font-size: 0.82rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   transition: color 0.15s;
 }
