@@ -4,12 +4,7 @@
 
       <!-- Logo -->
       <v-col cols="12">
-        <v-img
-          class="mb-4"
-          height="auto"
-          style="margin: 0 auto; max-width: 450px"
-          src="@/assets/PinkSlip.png"
-        />
+        <v-img class="mb-4" height="auto" style="margin: 0 auto; max-width: 450px" src="@/assets/PinkSlip.png" />
       </v-col>
 
       <!-- Loading indicator -->
@@ -38,7 +33,8 @@
         <!-- Hero: days counter -->
         <v-col cols="12" class="text-center pb-8">
           <h1 class="hero-text">
-            It's been <span class="DaysNum">{{ state.daysSinceLastLayoff }}</span> {{ dayText }} since the last gaming layoffs
+            It's been <span class="DaysNum">{{ state.daysSinceLastLayoff }}</span> {{ dayText }} since the last gaming
+            layoffs
           </h1>
         </v-col>
 
@@ -47,7 +43,8 @@
           <div class="stat-card">
             <div class="stat-label">Latest Studio</div>
             <div class="stat-value">{{ state.company?.company }}</div>
-            <a v-if="state.company?.source" :href="state.company.source" target="_blank" class="stat-source">(Source)</a>
+            <a v-if="state.company?.source" :href="state.company.source" target="_blank"
+              class="stat-source">(Source)</a>
           </div>
         </v-col>
 
@@ -58,20 +55,29 @@
           </div>
         </v-col>
 
-        <v-col cols="12" sm="6" class="d-flex">
+        <v-col cols="12" sm="4" class="d-flex">
           <div class="stat-card stat-card--aggregate">
             <div class="stat-label stat-label--aggregate">Total Estimated Layoffs in 2026</div>
-            <div class="stat-value">~ {{ state.totalEmployees !== null ? formatNumber(state.totalEmployees) : '—' }}</div>
-            <div v-if="yoyChange !== null" class="stat-yoy" :class="yoyChange > 0 ? 'stat-yoy--worse' : 'stat-yoy--better'">
+            <div class="stat-value">~ {{ state.totalEmployees !== null ? formatNumber(state.totalEmployees) : '—' }}
+            </div>
+            <div v-if="yoyChange !== null" class="stat-yoy"
+              :class="yoyChange > 0 ? 'stat-yoy--worse' : 'stat-yoy--better'">
               {{ yoyChange > 0 ? '+' : '' }}{{ yoyChange }}% vs same point in {{ currentYear - 1 }}
             </div>
           </div>
         </v-col>
 
-        <v-col cols="12" sm="6" class="d-flex">
+        <v-col cols="12" sm="4" class="d-flex">
           <div class="stat-card stat-card--aggregate">
             <div class="stat-label stat-label--aggregate">Unique Companies Affected in 2026</div>
             <div class="stat-value">{{ state.uniqueCompanies ?? '—' }}</div>
+          </div>
+        </v-col>
+
+        <v-col cols="12" sm="4" class="d-flex">
+          <div class="stat-card stat-card--aggregate">
+            <div class="stat-label stat-label--aggregate">Studios Closed in 2026</div>
+            <div class="stat-value">{{ state.studioClosures ?? '—' }}</div>
           </div>
         </v-col>
 
@@ -91,38 +97,6 @@
           </div>
         </v-col>
 
-        <!-- Monthly bar chart -->
-        <v-col cols="12" class="mt-4">
-          <div class="chart-card">
-            <div class="chart-header">
-              <span class="chart-title">{{ currentYear }} Layoffs by Month</span>
-              <span v-if="worstMonth !== null" class="chart-worst">
-                Worst month: <strong>{{ MONTHS[worstMonth] }}</strong> (~{{ shortNumber(state.monthlyEmployees[worstMonth]) }} employees)
-              </span>
-            </div>
-
-            <div class="chart-bar-area">
-              <div v-for="(val, i) in state.monthlyEmployees" :key="i" class="chart-col">
-                <span v-if="val > 0" class="chart-val">{{ shortNumber(val) }}</span>
-                <div
-                  class="chart-bar"
-                  :class="{
-                    'chart-bar--future': i > currentMonth,
-                    'chart-bar--worst': i === worstMonth,
-                  }"
-                  :style="{ height: barHeight(val) }"
-                />
-              </div>
-            </div>
-
-            <div class="chart-months">
-              <div v-for="(m, i) in MONTHS" :key="i" class="chart-month-label" :class="{ 'chart-month-label--current': i === currentMonth }">
-                {{ m }}
-              </div>
-            </div>
-          </div>
-        </v-col>
-
         <!-- Resources -->
         <v-col cols="12" class="mt-2">
           <div class="resources-card">
@@ -133,26 +107,125 @@
             <div class="resources-grid">
               <div class="resources-group">
                 <div class="resources-group-label">Job Boards</div>
-                <a href="https://games-jobs-workbook.replit.app/" target="_blank" rel="noopener noreferrer" class="resources-link">ASGC Jobs Board</a>
-                <a href="https://gamejobs.co" target="_blank" rel="noopener noreferrer" class="resources-link">GameJobs.co</a>
-                <a href="https://hitmarker.net" target="_blank" rel="noopener noreferrer" class="resources-link">Hitmarker</a>
-                <a href="https://workwithindies.com" target="_blank" rel="noopener noreferrer" class="resources-link">Work With Indies</a>
-                <a href="https://www.linkedin.com/jobs/search/?keywords=game%20developer" target="_blank" rel="noopener noreferrer" class="resources-link">LinkedIn Gaming Jobs</a>
+                <a href="https://games-jobs-workbook.replit.app/" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">ASGC Jobs Board</a>
+                <a href="https://www.artstation.com/jobs" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">ArtStation Jobs</a>
+                <a href="https://gamejobs.co" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">GameJobs.co</a>
+                <a href="https://hitmarker.net" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">Hitmarker</a>
+                <a href="https://workwithindies.com" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">Work With
+                  Indies</a>
+                <a href="https://www.linkedin.com/jobs/search/?keywords=game%20developer" target="_blank"
+                  rel="noopener noreferrer" class="resources-link">LinkedIn Gaming Jobs</a>
               </div>
               <div class="resources-group">
                 <div class="resources-group-label">Community</div>
                 <a href="https://www.igda.org" target="_blank" rel="noopener noreferrer" class="resources-link">IGDA</a>
-<a href="https://www.reddit.com/r/gamedev" target="_blank" rel="noopener noreferrer" class="resources-link">r/gamedev</a>
+                <a href="https://www.igda.org/page/ChapterDirectory" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">IGDA Local Chapters</a>
+                <a href="https://www.reddit.com/r/gamedev" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">r/gamedev</a>
+                <a href="https://discord.gg/gamedev" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">Game Dev
+                  Discord</a>
               </div>
               <div class="resources-group">
                 <div class="resources-group-label">Support</div>
-                <a href="https://www.nami.org" target="_blank" rel="noopener noreferrer" class="resources-link">NAMI Mental Health</a>
-                <a href="https://www.crisistextline.org" target="_blank" rel="noopener noreferrer" class="resources-link">Crisis Text Line</a>
-                <a href="https://www.benefits.gov" target="_blank" rel="noopener noreferrer" class="resources-link">Benefits.gov</a>
+                <a href="https://www.nami.org" target="_blank" rel="noopener noreferrer" class="resources-link">NAMI
+                  Mental
+                  Health</a>
+                <a href="https://www.crisistextline.org" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">Crisis
+                  Text Line</a>
+                <a href="https://www.benefits.gov" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">Benefits.gov</a>
               </div>
             </div>
           </div>
         </v-col>
+
+        <!-- Multi-year trend chart -->
+        <v-col v-if="state.yearlyData.length" cols="12" class="mt-4">
+          <div class="chart-card">
+            <div class="chart-header">
+              <span class="chart-title">Known Layoffs by Year</span>
+              <span class="chart-worst">
+                All-time peak: <strong>{{state.yearlyData.reduce((a, b) => b.total > a.total ? b : a,
+                  state.yearlyData[0])?.year}}</strong>
+                (~{{shortNumber(Math.max(...state.yearlyData.map(d => d.total)))}} employees)
+              </span>
+            </div>
+            <svg class="trend-svg" :viewBox="`0 0 ${TREND_W} ${TREND_H}`" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#fd97be" stop-opacity="0.25" />
+                  <stop offset="100%" stop-color="#fd97be" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <path :d="trendAreaPath" fill="url(#trendGrad)" />
+              <path :d="trendLinePath" fill="none" stroke="#fd97be" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <g v-for="p in trendPoints" :key="p.year">
+                <circle :cx="p.x" :cy="p.y" r="4" :fill="p.isCurrent ? '#fff' : '#fd97be'"
+                  :stroke="p.isCurrent ? '#fd97be' : 'rgb(26,9,51)'" stroke-width="2" />
+                <text :x="p.x" :y="p.y - 10" text-anchor="middle" class="trend-label">{{ shortNumber(p.total) }}</text>
+                <text :x="p.x" :y="TREND_H - TREND_PAD.bottom + 16" text-anchor="middle" class="trend-year"
+                  :class="{ 'trend-year--current': p.isCurrent }">{{ p.year }}</text>
+              </g>
+            </svg>
+          </div>
+        </v-col>
+
+        <!-- Monthly bar chart -->
+        <v-col cols="12" class="mt-4">
+          <div class="chart-card">
+            <div class="chart-header">
+              <span class="chart-title">{{ currentYear }} Layoffs by Month</span>
+              <span v-if="worstMonth !== null" class="chart-worst">
+                Worst month: <strong>{{ MONTHS[worstMonth] }}</strong> (~{{
+                  shortNumber(state.monthlyEmployees[worstMonth]) }}
+                employees)
+              </span>
+            </div>
+
+            <div class="chart-bar-area">
+              <div v-for="(val, i) in state.monthlyEmployees" :key="i" class="chart-col"
+                :class="{ 'chart-col--worst': i === worstMonth }">
+                <span v-if="val > 0" class="chart-val">{{ shortNumber(val) }}</span>
+                <div v-if="i > currentMonth" class="chart-bar chart-bar--future" />
+                <template v-else>
+                  <div v-if="state.monthlyClosures[i] > 0" class="chart-bar chart-bar--closure"
+                    :style="{ height: barHeight(state.monthlyClosures[i]) }" />
+                  <div v-if="state.monthlyLayoffs[i] > 0" class="chart-bar chart-bar--layoff"
+                    :style="{ height: barHeight(state.monthlyLayoffs[i]) }" />
+                </template>
+              </div>
+            </div>
+
+            <div class="chart-months">
+              <div v-for="(m, i) in MONTHS" :key="i" class="chart-month-label"
+                :class="{ 'chart-month-label--current': i === currentMonth }">
+                {{ m }}
+              </div>
+            </div>
+
+            <div class="chart-legend">
+              <span class="chart-legend-item">
+                <span class="chart-legend-dot chart-legend-dot--layoff" />
+                Layoffs
+              </span>
+              <span class="chart-legend-item">
+                <span class="chart-legend-dot chart-legend-dot--closure" />
+                Studio Closures
+              </span>
+            </div>
+          </div>
+        </v-col>
+
+
 
         <!-- Share row -->
         <v-col cols="12" class="text-center pb-4">
@@ -161,7 +234,8 @@
 
             <v-tooltip text="Share on Twitter" location="top">
               <template #activator="{ props }">
-                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.twitter" target="_blank" rel="noopener noreferrer">
+                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.twitter"
+                  target="_blank" rel="noopener noreferrer">
                   <v-icon>fab fa-x-twitter</v-icon>
                 </v-btn>
               </template>
@@ -169,7 +243,8 @@
 
             <v-tooltip text="Share on Bluesky" location="top">
               <template #activator="{ props }">
-                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.bluesky" target="_blank" rel="noopener noreferrer">
+                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.bluesky"
+                  target="_blank" rel="noopener noreferrer">
                   <v-icon>fab fa-bluesky</v-icon>
                 </v-btn>
               </template>
@@ -177,7 +252,8 @@
 
             <v-tooltip text="Share on Threads" location="top">
               <template #activator="{ props }">
-                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.threads" target="_blank" rel="noopener noreferrer">
+                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.threads"
+                  target="_blank" rel="noopener noreferrer">
                   <v-icon>fab fa-threads</v-icon>
                 </v-btn>
               </template>
@@ -185,7 +261,8 @@
 
             <v-tooltip text="Share on Facebook" location="top">
               <template #activator="{ props }">
-                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.facebook" target="_blank" rel="noopener noreferrer">
+                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.facebook"
+                  target="_blank" rel="noopener noreferrer">
                   <v-icon>fab fa-facebook</v-icon>
                 </v-btn>
               </template>
@@ -193,7 +270,8 @@
 
             <v-tooltip text="Share on LinkedIn" location="top">
               <template #activator="{ props }">
-                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.linkedin" target="_blank" rel="noopener noreferrer">
+                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.linkedin"
+                  target="_blank" rel="noopener noreferrer">
                   <v-icon>fab fa-linkedin</v-icon>
                 </v-btn>
               </template>
@@ -201,7 +279,8 @@
 
             <v-tooltip text="Share on Reddit" location="top">
               <template #activator="{ props }">
-                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.reddit" target="_blank" rel="noopener noreferrer">
+                <v-btn v-bind="props" icon size="small" variant="text" color="#fd97be" :href="shareLinks.reddit"
+                  target="_blank" rel="noopener noreferrer">
                   <v-icon>fab fa-reddit</v-icon>
                 </v-btn>
               </template>
@@ -248,7 +327,11 @@ const state = reactive({
   totalEmployees: null as number | null,
   prevYearEmployees: null as number | null,
   uniqueCompanies: null as number | null,
+  studioClosures: null as number | null,
   monthlyEmployees: Array(12).fill(0) as number[],
+  monthlyLayoffs: Array(12).fill(0) as number[],
+  monthlyClosures: Array(12).fill(0) as number[],
+  yearlyData: [] as { year: number; total: number }[],
 })
 
 onMounted(async () => {
@@ -258,7 +341,7 @@ onMounted(async () => {
   try {
     const { data, error } = await supabase
       .from('layoffs')
-      .select('company, employees, source, date')
+      .select('company, employees, source, date, event_type')
       .order('date', { ascending: false })
 
     if (error) { console.error(error); return }
@@ -271,6 +354,7 @@ onMounted(async () => {
 
       state.totalEmployees = currentYearRows.reduce((sum, row) => sum + (row.employees || 0), 0)
       state.uniqueCompanies = new Set(currentYearRows.map((row) => row.company).filter(Boolean)).size
+      state.studioClosures = currentYearRows.filter((row) => row.event_type === 'Studio Closure').length
 
       const now = new Date()
       const prevYearRows = data.filter((row) => {
@@ -283,11 +367,30 @@ onMounted(async () => {
       state.prevYearEmployees = prevYearRows.reduce((sum, row) => sum + (row.employees || 0), 0)
 
       const monthly = Array(12).fill(0)
+      const monthlyLayoffs = Array(12).fill(0)
+      const monthlyClosures = Array(12).fill(0)
       currentYearRows.forEach((row) => {
         const m = new Date(row.date).getMonth()
-        monthly[m] += row.employees || 0
+        const n = row.employees || 0
+        monthly[m] += n
+        if (row.event_type === 'Studio Closure') {
+          monthlyClosures[m] += n
+        } else {
+          monthlyLayoffs[m] += n
+        }
       })
       state.monthlyEmployees = monthly
+      state.monthlyLayoffs = monthlyLayoffs
+      state.monthlyClosures = monthlyClosures
+
+      const yearMap: Record<number, number> = {}
+      data.forEach((row) => {
+        const y = new Date(row.date).getFullYear()
+        yearMap[y] = (yearMap[y] || 0) + (row.employees || 0)
+      })
+      state.yearlyData = Object.entries(yearMap)
+        .map(([y, t]) => ({ year: Number(y), total: t }))
+        .sort((a, b) => a.year - b.year)
     }
   } catch (error) {
     console.error('Unexpected error:', error)
@@ -300,6 +403,49 @@ const worstMonth = computed(() => {
   const past = state.monthlyEmployees.slice(0, currentMonth + 1)
   const max = Math.max(...past)
   return max > 0 ? past.indexOf(max) : null
+})
+
+const TREND_W = 600
+const TREND_H = 160
+const TREND_PAD = { top: 32, right: 24, bottom: 28, left: 24 }
+
+const trendPoints = computed(() => {
+  const d = state.yearlyData
+  if (!d.length) return []
+  const max = Math.max(...d.map((r) => r.total), 1)
+  const innerW = TREND_W - TREND_PAD.left - TREND_PAD.right
+  const innerH = TREND_H - TREND_PAD.top - TREND_PAD.bottom
+  return d.map((r, i) => ({
+    x: TREND_PAD.left + (d.length === 1 ? innerW / 2 : (i / (d.length - 1)) * innerW),
+    y: TREND_PAD.top + innerH - (r.total / max) * innerH,
+    year: r.year,
+    total: r.total,
+    isCurrent: r.year === currentYear,
+  }))
+})
+
+const trendLinePath = computed(() => {
+  const pts = trendPoints.value
+  if (!pts.length) return ''
+  return pts.map((p, i, arr) => {
+    if (i === 0) return `M ${p.x},${p.y}`
+    const prev = arr[i - 1]
+    const cpx = (prev.x + p.x) / 2
+    return `C ${cpx},${prev.y} ${cpx},${p.y} ${p.x},${p.y}`
+  }).join(' ')
+})
+
+const trendAreaPath = computed(() => {
+  const pts = trendPoints.value
+  if (!pts.length) return ''
+  const bottom = TREND_H - TREND_PAD.bottom
+  const line = pts.map((p, i, arr) => {
+    if (i === 0) return `M ${p.x},${p.y}`
+    const prev = arr[i - 1]
+    const cpx = (prev.x + p.x) / 2
+    return `C ${cpx},${prev.y} ${cpx},${p.y} ${p.x},${p.y}`
+  }).join(' ')
+  return `${line} L ${pts[pts.length - 1].x},${bottom} L ${pts[0].x},${bottom} Z`
 })
 
 function barHeight(val: number): string {
@@ -330,12 +476,12 @@ const shareLinks = computed(() => {
   const url = encodeURIComponent('https://gaminglayoffs.com')
   const title = encodeURIComponent(`${currentYear} Gaming Layoff Tracker`)
   return {
-    twitter:  `https://twitter.com/intent/tweet?text=${t}`,
-    bluesky:  `https://bsky.app/intent/compose?text=${t}`,
-    threads:  `https://www.threads.net/intent/post?text=${t}`,
+    twitter: `https://twitter.com/intent/tweet?text=${t}`,
+    bluesky: `https://bsky.app/intent/compose?text=${t}`,
+    threads: `https://www.threads.net/intent/post?text=${t}`,
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-    reddit:   `https://reddit.com/submit?url=${url}&title=${title}`,
+    reddit: `https://reddit.com/submit?url=${url}&title=${title}`,
   }
 })
 
@@ -397,14 +543,20 @@ async function copyToClipboard() {
   text-underline-offset: 3px;
   letter-spacing: 0.03em;
 }
-.stat-source:hover { color: #fff; }
+
+.stat-source:hover {
+  color: #fff;
+}
 
 .stat-card--aggregate {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 3px solid rgba(255, 255, 255, 0.35);
 }
-.stat-label--aggregate { color: rgba(255, 255, 255, 0.5); }
+
+.stat-label--aggregate {
+  color: rgba(255, 255, 255, 0.5);
+}
 
 .stat-yoy {
   display: inline-block;
@@ -415,13 +567,42 @@ async function copyToClipboard() {
   border-radius: 4px;
   align-self: flex-start;
 }
+
 .stat-yoy--worse {
   background: rgba(255, 80, 80, 0.15);
   color: rgb(255, 120, 120);
 }
+
 .stat-yoy--better {
   background: rgba(80, 220, 140, 0.15);
   color: rgb(80, 200, 130);
+}
+
+/* ── Trend (multi-year) chart ── */
+.trend-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.trend-label {
+  fill: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.trend-year {
+  fill: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+.trend-year--current {
+  fill: rgb(253, 151, 190);
 }
 
 /* ── Chart card ── */
@@ -453,7 +634,10 @@ async function copyToClipboard() {
   font-size: 0.72rem;
   color: rgba(255, 255, 255, 0.4);
 }
-.chart-worst strong { color: rgba(255, 255, 255, 0.7); }
+
+.chart-worst strong {
+  color: rgba(255, 255, 255, 0.7);
+}
 
 /* ── Bars ── */
 .chart-bar-area {
@@ -484,22 +668,63 @@ async function copyToClipboard() {
 
 .chart-bar {
   width: 100%;
-  background: rgb(253, 151, 190);
   border-radius: 3px 3px 0 0;
   opacity: 0.85;
   transition: opacity 0.2s;
   min-height: 3px;
 }
-.chart-bar:hover { opacity: 1; }
 
-.chart-bar--worst {
-  background: #fff;
+.chart-bar--layoff {
+  background: rgb(253, 151, 190);
+  border-radius: 0 0 0 0;
+}
+
+.chart-bar--closure {
+  background: rgb(255, 120, 80);
+  border-radius: 3px 3px 0 0;
+}
+
+.chart-col--worst .chart-bar {
   opacity: 1;
+  filter: brightness(1.15);
 }
 
 .chart-bar--future {
   background: rgba(255, 255, 255, 0.1);
   min-height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.chart-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.chart-legend-dot--layoff {
+  background: rgb(253, 151, 190);
+}
+
+.chart-legend-dot--closure {
+  background: rgb(255, 120, 80);
 }
 
 /* ── Month labels ── */
@@ -578,7 +803,10 @@ async function copyToClipboard() {
 }
 
 @media (max-width: 600px) {
-  .resources-grid { grid-template-columns: 1fr; gap: 12px; }
+  .resources-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 .resources-group {
@@ -603,5 +831,10 @@ async function copyToClipboard() {
   text-decoration: none;
   transition: color 0.15s;
 }
-.resources-link:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+.resources-link:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 </style>

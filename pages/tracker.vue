@@ -167,7 +167,28 @@ import * as numeralNamespace from 'numeral'
 
 const numeral = (numeralNamespace as any).default || numeralNamespace
 
-useHead({ title: 'Full Gaming Layoff Tracker | Video Game Layoffs' })
+const year = new Date().getFullYear()
+
+useHead({
+  title: `Full Gaming Layoff Tracker ${year} | Video Game Layoffs`,
+  link: [
+    { rel: 'canonical', href: 'https://gaminglayoffs.com/tracker' },
+  ],
+  meta: [
+    { name: 'description', content: 'The complete database of games industry layoffs and studio closures. Filter by year, company, country, and event type. Export to CSV.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:site_name', content: 'Gaming Layoffs' },
+    { property: 'og:title', content: `Full Gaming Layoff Tracker — ${year}` },
+    { property: 'og:description', content: 'The complete database of games industry layoffs and studio closures. Filter, search, and export the data.' },
+    { property: 'og:image', content: 'https://gaminglayoffs.com/og-image.png' },
+    { property: 'og:url', content: 'https://gaminglayoffs.com/tracker' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:site', content: '@MikeStrawMedia' },
+    { name: 'twitter:title', content: `Full Gaming Layoff Tracker — ${year}` },
+    { name: 'twitter:description', content: 'The complete database of games industry layoffs and studio closures. Filter, search, and export the data.' },
+    { name: 'twitter:image', content: 'https://gaminglayoffs.com/og-image.png' },
+  ],
+})
 
 const search = ref('')
 const loading = ref(true)
@@ -178,10 +199,11 @@ const parentCompanyFilter = ref<string | null>(null)
 const studioCountryFilter = ref<string | null>(null)
 const companyTypeFilter = ref<string | null>(null)
 
-const HIDDEN_COLS = new Set(['id', 'new_layoff'])
+const HIDDEN_COLS = new Set(['id', 'new_layoff', 'notes', 'studio_state', 'company_type', 'parent_country'])
 
 const COLUMN_LABELS: Record<string, string> = {
   company: 'Company',
+  event_type: 'Type',
   employees: 'Employees Affected',
   date: 'Date',
   source: 'Source',
@@ -197,14 +219,15 @@ const COLUMN_ALIGN: Record<string, 'start' | 'end' | 'center'> = {
 
 const headers = computed(() => {
   if (!layoffs.value.length) return []
-  return Object.keys(layoffs.value[0])
-    .filter((k) => !HIDDEN_COLS.has(k))
-    .map((k) => ({
-      title: COLUMN_LABELS[k] ?? k.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-      key: k,
-      sortable: k !== 'source' && k !== 'notes',
-      align: COLUMN_ALIGN[k] ?? 'start',
-    }))
+  const allKeys = Object.keys(layoffs.value[0]).filter((k) => !HIDDEN_COLS.has(k))
+  const pinned = ['date', 'company', 'event_type'].filter((k) => allKeys.includes(k))
+  const rest = allKeys.filter((k) => !pinned.includes(k))
+  return [...pinned, ...rest].map((k) => ({
+    title: COLUMN_LABELS[k] ?? k.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+    key: k,
+    sortable: k !== 'source' && k !== 'notes',
+    align: COLUMN_ALIGN[k] ?? 'start',
+  }))
 })
 
 function uniqueSorted(key: string): string[] {

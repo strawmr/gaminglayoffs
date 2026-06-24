@@ -38,6 +38,16 @@
             class="submit-input mb-3"
             :disabled="loading || success"
           />
+          <v-select
+            v-model="form.event_type"
+            :items="['Layoff', 'Studio Closure']"
+            label="Event Type *"
+            variant="outlined"
+            color="#fd97be"
+            class="submit-input mb-3"
+            :rules="[required]"
+            :disabled="loading || success"
+          />
           <v-text-field
             v-model="form.source"
             label="Source URL *"
@@ -100,7 +110,7 @@ const success = ref(false)
 const error = ref(false)
 const formRef = ref<any>(null)
 
-const form = reactive({ company: '', date: '', employees: '', source: '', notes: '' })
+const form = reactive({ company: '', date: '', employees: '', event_type: 'Layoff', source: '', notes: '' })
 
 const required = (v: string) => !!v?.trim() || 'Required'
 const validUrl = (v: string) => {
@@ -122,6 +132,7 @@ async function submit() {
       company: form.company.trim(),
       date: form.date,
       employees: form.employees.trim() || null,
+      event_type: form.event_type,
       source: form.source.trim(),
       notes: form.notes.trim() || null,
     })
@@ -139,6 +150,7 @@ function resetForm() {
   form.company = ''
   form.date = ''
   form.employees = ''
+  form.event_type = 'Layoff'
   form.source = ''
   form.notes = ''
   success.value = false
