@@ -129,8 +129,9 @@
                 <a href="https://www.reddit.com/r/gamedev" target="_blank" rel="noopener noreferrer"
                   class="resources-link">r/gamedev</a>
                 <a href="https://discord.gg/gamedev" target="_blank" rel="noopener noreferrer"
-                  class="resources-link">Game Dev
-                  Discord</a>
+                  class="resources-link">Game Dev Discord</a>
+                <a href="https://discord.com/invite/VtH6nDKCVy" target="_blank" rel="noopener noreferrer"
+                  class="resources-link">x2XP Discord</a>
               </div>
               <div class="resources-group">
                 <div class="resources-group-label">Support</div>
