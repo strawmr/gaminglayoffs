@@ -6,7 +6,7 @@
 
     <v-card class="submit-card">
       <v-card-title class="submit-title">Submit a Layoff</v-card-title>
-      <v-card-subtitle class="submit-subtitle">Know about a layoff that isn't listed? Submit it here and we'll review it.</v-card-subtitle>
+      <v-card-subtitle class="submit-subtitle">Know about a layoff that isn't listed? Submit it here and we'll review it. If you'd like to talk more about the layoff your submitting, please reach out to <a href="mailto:mike@mikestrawmedia.com" class="text-decoration-underline">mike@mikestrawmedia.com</a></v-card-subtitle>
 
       <v-card-text class="pt-4">
         <v-form ref="formRef" @submit.prevent="submit">
@@ -64,9 +64,18 @@
             placeholder="Any additional context..."
             variant="outlined"
             color="#fd97be"
-            class="submit-input"
+            class="submit-input mb-3"
             rows="3"
             auto-grow
+            :disabled="loading || success"
+          />
+          <v-text-field
+            v-model="form.contact"
+            label="Contact info (optional)"
+            placeholder="Email or phone, if you're open to talking more"
+            variant="outlined"
+            color="#fd97be"
+            class="submit-input"
             :disabled="loading || success"
           />
         </v-form>
@@ -110,7 +119,7 @@ const success = ref(false)
 const error = ref(false)
 const formRef = ref<any>(null)
 
-const form = reactive({ company: '', date: '', employees: '', event_type: 'Layoff', source: '', notes: '' })
+const form = reactive({ company: '', date: '', employees: '', event_type: 'Layoff', source: '', notes: '', contact: '' })
 
 const required = (v: string) => !!v?.trim() || 'Required'
 const validUrl = (v: string) => {
@@ -135,6 +144,7 @@ async function submit() {
       event_type: form.event_type,
       source: form.source.trim(),
       notes: form.notes.trim() || null,
+      contact: form.contact.trim() || null,
     })
 
     if (sbError) throw sbError
@@ -153,6 +163,7 @@ function resetForm() {
   form.event_type = 'Layoff'
   form.source = ''
   form.notes = ''
+  form.contact = ''
   success.value = false
   error.value = false
   formRef.value?.reset()
@@ -184,7 +195,7 @@ watch(open, (val) => {
 
 .submit-subtitle {
   font-size: 0.82rem !important;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(255, 255, 255, 0.795) !important;
   padding-left: 24px !important;
   white-space: normal !important;
 }
