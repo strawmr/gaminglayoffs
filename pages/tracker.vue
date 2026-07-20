@@ -8,14 +8,21 @@
           Back
         </v-btn>
         <h1 class="tracker-title flex-grow-1 text-center">Full Gaming Layoff Tracker</h1>
-        <div class="d-flex gap-2">
+        <div class="d-flex flex-wrap justify-end gap-2">
           <SubmitLayoffModal>
             <template #activator="{ props }">
               <v-btn v-bind="props" variant="outlined" color="#fd97be" prepend-icon="fas fa-plus" style="font-weight: 700; font-size: 0.8rem;">
-                Submit
+                Submit Layoff
               </v-btn>
             </template>
           </SubmitLayoffModal>
+          <SubmitResourceModal>
+            <template #activator="{ props }">
+              <v-btn v-bind="props" variant="outlined" color="#fd97be" prepend-icon="fas fa-plus" style="font-weight: 700; font-size: 0.8rem;">
+                Submit Resource
+              </v-btn>
+            </template>
+          </SubmitResourceModal>
           <v-btn
             variant="outlined"
             color="#fd97be"

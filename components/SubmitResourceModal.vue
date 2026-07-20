@@ -5,43 +5,24 @@
     </template>
 
     <v-card class="submit-card">
-      <v-card-title class="submit-title">Submit a Layoff</v-card-title>
-      <v-card-subtitle class="submit-subtitle">Know about a layoff that isn't listed? Submit it here and we'll review it. If you'd like to talk more about the layoff your submitting, please reach out to <a href="mailto:mike@mikestrawmedia.com" class="text-decoration-underline">mike@mikestrawmedia.com</a></v-card-subtitle>
+      <v-card-title class="submit-title">Submit a Resource</v-card-title>
+      <v-card-subtitle class="submit-subtitle">Know of a resource that could help people impacted by layoffs or looking for work? Submit it here and we'll review it. Questions? Reach out to <a href="mailto:mike@mikestrawmedia.com" class="text-decoration-underline">mike@mikestrawmedia.com</a></v-card-subtitle>
 
       <v-card-text class="pt-4">
         <v-form ref="formRef" @submit.prevent="submit">
           <v-text-field
-            v-model="form.company"
-            label="Company / Studio *"
+            v-model="form.name"
+            label="Resource Name *"
             variant="outlined"
             color="#fd97be"
             class="submit-input mb-3"
             :rules="[required]"
-            :disabled="loading || success"
-          />
-          <v-text-field
-            v-model="form.date"
-            label="Date *"
-            type="date"
-            variant="outlined"
-            color="#fd97be"
-            class="submit-input mb-3"
-            :rules="[required]"
-            :disabled="loading || success"
-          />
-          <v-text-field
-            v-model="form.employees"
-            label="Employees Affected"
-            placeholder="e.g. 200 or ~50"
-            variant="outlined"
-            color="#fd97be"
-            class="submit-input mb-3"
             :disabled="loading || success"
           />
           <v-select
-            v-model="form.event_type"
-            :items="['Layoff', 'Studio Closure']"
-            label="Event Type *"
+            v-model="form.category"
+            :items="['Job Boards', 'Community', 'Support', 'Other']"
+            label="Category *"
             variant="outlined"
             color="#fd97be"
             class="submit-input mb-3"
@@ -49,8 +30,8 @@
             :disabled="loading || success"
           />
           <v-text-field
-            v-model="form.source"
-            label="Source URL *"
+            v-model="form.url"
+            label="Link *"
             placeholder="https://..."
             variant="outlined"
             color="#fd97be"
@@ -59,9 +40,9 @@
             :disabled="loading || success"
           />
           <v-textarea
-            v-model="form.notes"
-            label="Notes"
-            placeholder="Any additional context..."
+            v-model="form.description"
+            label="Description"
+            placeholder="What is this resource and who is it for?"
             variant="outlined"
             color="#fd97be"
             class="submit-input mb-3"
@@ -119,7 +100,7 @@ const success = ref(false)
 const error = ref(false)
 const formRef = ref<any>(null)
 
-const form = reactive({ company: '', date: '', employees: '', event_type: 'Layoff', source: '', notes: '', contact: '' })
+const form = reactive({ name: '', category: '', url: '', description: '', contact: '' })
 
 const required = (v: string) => !!v?.trim() || 'Required'
 const validUrl = (v: string) => {
@@ -146,13 +127,11 @@ async function submit() {
     const { $supabase } = useNuxtApp()
     const supabase = $supabase as SupabaseClient
 
-    const { error: sbError } = await supabase.from('submissions').insert({
-      company: form.company.trim(),
-      date: form.date,
-      employees: form.employees.trim() || null,
-      event_type: form.event_type,
-      source: normalizeUrl(form.source) ?? form.source.trim(),
-      notes: form.notes.trim() || null,
+    const { error: sbError } = await supabase.from('resource_submissions').insert({
+      name: form.name.trim(),
+      category: form.category,
+      url: normalizeUrl(form.url) ?? form.url.trim(),
+      description: form.description.trim() || null,
       contact: form.contact.trim() || null,
     })
 
@@ -166,12 +145,10 @@ async function submit() {
 }
 
 function resetForm() {
-  form.company = ''
-  form.date = ''
-  form.employees = ''
-  form.event_type = 'Layoff'
-  form.source = ''
-  form.notes = ''
+  form.name = ''
+  form.category = ''
+  form.url = ''
+  form.description = ''
   form.contact = ''
   success.value = false
   error.value = false

@@ -94,6 +94,13 @@
                 </v-btn>
               </template>
             </SubmitLayoffModal>
+            <SubmitResourceModal>
+              <template #activator="{ props }">
+                <v-btn v-bind="props" style="font-weight: 800;" size="large" variant="outlined" color="#fd97be">
+                  Submit a Resource
+                </v-btn>
+              </template>
+            </SubmitResourceModal>
           </div>
         </v-col>
 
