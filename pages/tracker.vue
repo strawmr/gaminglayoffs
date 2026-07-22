@@ -16,13 +16,6 @@
               </v-btn>
             </template>
           </SubmitLayoffModal>
-          <SubmitResourceModal>
-            <template #activator="{ props }">
-              <v-btn v-bind="props" variant="outlined" color="#fd97be" prepend-icon="fas fa-plus" style="font-weight: 700; font-size: 0.8rem;">
-                Submit Resource
-              </v-btn>
-            </template>
-          </SubmitResourceModal>
           <v-btn
             variant="outlined"
             color="#fd97be"
