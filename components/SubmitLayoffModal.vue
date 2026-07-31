@@ -6,7 +6,7 @@
 
     <v-card class="submit-card">
       <v-card-title class="submit-title">Submit a Layoff</v-card-title>
-      <v-card-subtitle class="submit-subtitle">Know about a layoff that isn't listed? Submit it here and we'll review it. If you'd like to talk more about the layoff your submitting, please reach out to <a href="mailto:mike@mikestrawmedia.com" class="text-decoration-underline">mike@mikestrawmedia.com</a></v-card-subtitle>
+      <v-card-subtitle class="submit-subtitle">Know about a layoff that isn't listed? Submit it here and we'll review it. If you'd like to talk more about the layoff you're submitting, please reach out to <a href="mailto:mike@mikestrawmedia.com" class="text-decoration-underline">mike@mikestrawmedia.com</a></v-card-subtitle>
 
       <v-card-text class="pt-4">
         <v-form ref="formRef" @submit.prevent="submit">
